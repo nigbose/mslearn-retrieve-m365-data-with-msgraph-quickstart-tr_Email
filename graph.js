@@ -15,4 +15,10 @@ async function getUser() {
         .select('id,displayName')
         .get();
 }
-
+//https://learn.microsoft.com/en-us/training/modules/msgraph-user-photo-information/3-exercise-access-user-profile-photo
+async function getUserPhoto() {
+    ensureScope('user.read');
+     return await graphClient
+         .api('/me/photo/$value')
+         .get();
+ }
