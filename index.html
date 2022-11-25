@@ -18,16 +18,43 @@
 <body>
   <main id="main-container" role="main" class="container">
     <div id="content" style="display: none;">
-      <h4>Welcome <span id="userName"></span></h4>    
+      <h4>Welcome <span id="userName"></span></h4>  
+      
+      <button onclick="displayEmail();" id="displayEmail">Show email</button>
+      <ul id="emails"></ul>  
+      
+      <div id="loadMoreContainer" style="display: none;">
+        <button onclick="displayEmail();">Load more</button>
+      </div>
+      
       <div>
         <button id="showProfilePhoto" style="display:none" onclick="displayProfilePhoto();">Show profile picture</button>
       </div>
       <img id="userPhoto" class="user" alt="User photo" style="display: none;" />
+      
+        <!-- Add for file download -->
+      <hr />
+      <label>Files in your OneDrive root folder:</label>
+      <ul id="downloadLinks"></ul>
+      
+      <!-- Add for file upload -->
+      <hr />
+      <input type="file" onchange="fileSelected(this);" />
+      <div id="uploadMessage"></div>
     </div>
+
     <a id="signin" onclick="displayUI(); return false;" href="#">
       <img src="./images/ms-symbollockup_signin_light.png" alt="Sign in with Microsoft" />
     </a>
+
+    <button id="btnShowEvents" style="display: none;" onclick="displayEvents();">Show events</button>
+    <div id="eventWrapper" style="display: none;">
+      <p>Your events retrieved from Microsoft Graph for the upcoming week:</p>
+      <ul id="events"></ul>
+    </div>
+
   </main>
+
   <script src="https://alcdn.msauth.net/browser/2.1.0/js/msal-browser.min.js"
     integrity="sha384-EmYPwkfj+VVmL1brMS1h6jUztl4QMS8Qq8xlZNgIT/luzg7MAzDVrRa2JxbNmk/e"
     crossorigin="anonymous"></script>

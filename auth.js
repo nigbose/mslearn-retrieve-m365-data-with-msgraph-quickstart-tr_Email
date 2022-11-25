@@ -1,18 +1,20 @@
 //MSAL configuration
 const msalConfig = {
     auth: {
-        clientId: 'f26e7b28-fd07-4865-b79f-b08fd9b8c398',
+        clientId: '3813b040-a026-4359-85d7-546511df49df',
         // comment out if you use a multi-tenant AAD app
         authority: 'https://login.microsoftonline.com/5e090376-6839-45a5-bcc6-bdbd4f378ecb',
         redirectUri: 'http://localhost:8080'
     }
 };
+
 const msalRequest = { scopes: [] };
 function ensureScope (scope) {
     if (!msalRequest.scopes.some((s) => s.toLowerCase() === scope.toLowerCase())) {
         msalRequest.scopes.push(scope);
     }
 }
+
 //Initialize MSAL client
 const msalClient = new msal.PublicClientApplication(msalConfig);
 
@@ -21,6 +23,7 @@ async function signIn() {
     const authResult = await msalClient.loginPopup(msalRequest);
     sessionStorage.setItem('msalAccount', authResult.account.username);
 }
+
 //Get token from Graph
 async function getToken() {
     let account = sessionStorage.getItem('msalAccount');
